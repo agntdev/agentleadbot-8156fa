@@ -1,19 +1,13 @@
 [
   {
-    "name": "Admin menu",
+    "name": "non-owner cannot open lead management",
     "steps": [
       {
+        "send": { "callback": "admin:menu" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Private admin view for lead management"
-            }
-          }
-        ],
-        "send": {
-          "callback": "admin:menu"
-        }
+          { "method": "answerCallbackQuery" },
+          { "method": "sendMessage", "payload": { "text": "Owner access isn't set up yet." } }
+        ]
       }
     ]
   }

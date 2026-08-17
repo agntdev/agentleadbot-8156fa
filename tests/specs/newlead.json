@@ -1,20 +1,18 @@
 [
   {
-    "name": "/newlead",
+    "name": "lead submission validates, reviews, and confirms",
     "steps": [
-      {
-        "expect": [
-          {
-            "method": "sendMessage",
-            "payload": {
-              "text": "Start lead submission flow"
-            }
-          }
-        ],
-        "send": {
-          "text": "/newlead"
-        }
-      }
+      { "send": { "text": "/newlead" }, "expect": [{ "method": "sendMessage", "payload": { "text": "What is your name?" } }] },
+      { "send": { "text": "A" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Enter a name between 2 and 120 characters." } }] },
+      { "send": { "text": "Alex Morgan" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Share your phone number, or type it here." } }] },
+      { "send": { "text": "not a phone" }, "expect": [{ "method": "sendMessage", "payload": { "text": "That phone number doesn’t look right. Include at least seven digits and try again." } }] },
+      { "send": { "text": "+1 555 123 4567" }, "expect": [{ "method": "sendMessage", "payload": { "text": "What would you like to do?" } }] },
+      { "send": { "callback": "lead:intent:buy" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Tell us a little about what you need." } }] },
+      { "send": { "text": "Looking for a two-bedroom near downtown." }, "expect": [{ "method": "sendMessage", "payload": { "text": "Please review your lead:\nName: Alex Morgan\nPhone: +1 555 123 4567\nIntent: buy\nNote: Looking for a two-bedroom near downtown." } }] },
+      { "send": { "callback": "lead:edit" }, "expect": [{ "method": "editMessageText", "payload": { "text": "Choose the detail to update." } }] },
+      { "send": { "callback": "lead:field:note" }, "expect": [{ "method": "sendMessage", "payload": { "text": "What is the updated note?" } }] },
+      { "send": { "text": "Looking for a two-bedroom close to transit." }, "expect": [{ "method": "sendMessage", "payload": { "text": "Please review your lead:\nName: Alex Morgan\nPhone: +1 555 123 4567\nIntent: buy\nNote: Looking for a two-bedroom close to transit." } }] },
+      { "send": { "callback": "lead:confirm" }, "expect": [{ "method": "sendMessage", "payload": { "text": "Lead storage isn't set up yet. Please try again shortly." } }] }
     ]
   }
 ]

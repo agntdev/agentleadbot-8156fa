@@ -1,14 +1,11 @@
 [
   {
-    "name": "/start replies with the welcome + main menu",
+    "name": "/start opens the real estate menu",
     "steps": [
       {
         "send": { "text": "/start" },
         "expect": [
-          {
-            "method": "sendMessage",
-            "payload": { "text": "👋 Welcome! Tap a button below to get started." }
-          }
+          { "method": "sendMessage", "payload": { "text": "Welcome. Choose an option below to continue." } }
         ]
       }
     ]
