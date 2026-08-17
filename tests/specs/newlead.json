@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/newlead",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Start lead submission flow"
+            }
+          }
+        ],
+        "send": {
+          "text": "/newlead"
+        }
+      }
+    ]
+  }
+]
